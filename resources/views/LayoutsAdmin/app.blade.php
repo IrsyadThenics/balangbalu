@@ -139,6 +139,10 @@
                             <a class="nav-link {{ request()->routeIs('admin.reports') ? 'active' : '' }}" href="{{ route('admin.reports') }}">Semua Laporan</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.claims') ? 'active' : '' }}" href="{{ route('admin.claims') }}">Permintaan Klaim</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.history') ? 'active' : '' }}" href="{{ route('admin.history') }}">Riwayat Saya</a>
                         </li>
                         <li class="nav-item">

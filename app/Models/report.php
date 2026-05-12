@@ -25,4 +25,10 @@ class Report extends Model
         'tanggal_laporan' => 'datetime',
         'waktu_laporan' => 'datetime',
     ];
+
+    public function claims()
+    {
+        return $this->hasMany(Claim::class);
+    }
 }
+

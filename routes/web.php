@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClaimController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -60,6 +62,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/report', [ReportController::class, 'index'])->name('reports.index');
     Route::resource('reports', ReportController::class)->except(['index']);
+
+    // Route untuk Klaim/Hubungi
+    Route::post('/claims', [ClaimController::class, 'store'])->name('claims.store');
+    Route::get('/admin/claims', [ClaimController::class, 'index'])->name('admin.claims')->middleware('role:admin');
+    Route::patch('/admin/claims/{id}', [ClaimController::class, 'updateStatus'])->name('admin.claims.update')->middleware('role:admin');
+
 });
 
 //untuk user mengakses ke halaman history

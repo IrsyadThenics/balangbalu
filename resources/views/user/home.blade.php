@@ -209,6 +209,26 @@
             Buat Laporan Baru
         </a>
     </div>
+    <!-- Alert Messages -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 border-0 shadow-sm" role="alert">
+            <div class="d-flex align-items-center gap-2">
+                <i data-lucide="check-circle" style="width: 20px;"></i>
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4 border-0 shadow-sm" role="alert">
+            <div class="d-flex align-items-center gap-2">
+                <i data-lucide="alert-circle" style="width: 20px;"></i>
+                {{ session('error') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <!-- Stats -->
     <div class="row g-4 mb-5">
@@ -277,10 +297,11 @@
 
                 <div class="card-footer-custom">
                     @if($report->jenis_laporan == 'kehilangan')
-                    <a href="#" class="btn-action-main btn-hubungi">Hubungi</a>
+                    <button type="button" class="btn-action-main btn-hubungi" data-bs-toggle="modal" data-bs-target="#modalClaim{{ $report->id }}">Hubungi</button>
                     @else
-                    <a href="#" class="btn-action-main btn-klaim">Klaim</a>
+                    <button type="button" class="btn-action-main btn-klaim" data-bs-toggle="modal" data-bs-target="#modalClaim{{ $report->id }}">Klaim</button>
                     @endif
+
                     <button type="button" class="btn-detail-icon" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $report->id }}">
                         <i data-lucide="eye" style="width: 18px;"></i>
                     </button>
@@ -322,6 +343,40 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Modal Claim -->
+        <div class="modal fade" id="modalClaim{{ $report->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0 px-4 pt-4">
+                        <h5 class="modal-title fw-800">
+                            {{ $report->jenis_laporan == 'kehilangan' ? 'Hubungi Pelapor' : 'Klaim Barang' }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('claims.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="report_id" value="{{ $report->id }}">
+                        <div class="modal-body p-4">
+                            <p class="text-muted mb-4">
+                                {{ $report->jenis_laporan == 'kehilangan' ? 
+                                   'Berikan informasi atau bukti jika Anda menemukan barang ini.' : 
+                                   'Berikan deskripsi atau bukti yang kuat bahwa barang ini adalah milik Anda.' }}
+                            </p>
+                            <div class="mb-3">
+                                <label for="pesan_validasi" class="detail-label">Pesan / Bukti Validasi</label>
+                                <textarea name="pesan_validasi" id="pesan_validasi" class="form-control" rows="4" placeholder="Contoh: Saya menemukan barang ini di dekat kantin..." required minlength="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 p-4">
+                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">Kirim Permintaan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         @empty
         <div class="col-12 text-center py-5">
             <div class="text-muted opacity-50 mb-3"><i data-lucide="inbox" style="width: 48px; height: 48px;"></i></div>

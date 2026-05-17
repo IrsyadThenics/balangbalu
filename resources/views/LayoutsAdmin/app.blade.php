@@ -172,10 +172,10 @@
 
         @media (min-width: 992px) {
             .navbar-nav.mx-auto {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                margin: 0 !important;
+                position: relative;
+                left: 0;
+                transform: none;
+                margin: 0 auto !important;
             }
         }
 

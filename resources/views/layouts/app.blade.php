@@ -70,10 +70,10 @@
 
         @media (min-width: 768px) {
             .navbar-nav.mx-auto {
-                position: relative;
-                left: 0;
-                transform: none;
-                margin: 0 auto !important;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0 !important;
             }
         }
 

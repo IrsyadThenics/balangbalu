@@ -4,7 +4,7 @@
 <style>
     /* Styling Spesifik Halaman Cara Kerja agar Sesuai Tema */
     :root {
-        --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        --primary-gradient: linear-gradient(135deg, #40434E 0%, #6f727c 100%);
         --text-dark: #0f172a;
         --text-muted: #64748b;
     }
@@ -36,12 +36,12 @@
 
     /* Styling Kartu Langkah Modern dengan Glassmorphism */
     .step-card {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(248, 244, 239, 0.9);
         backdrop-filter: blur(10px);
         border-radius: 24px;
         padding: 2.5rem;
         height: 100%;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #dfd7ca;
         transition: all 0.3s ease-in-out;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         position: relative;
@@ -51,7 +51,7 @@
     .step-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        border-color: #2563eb;
+        border-color: #40434E;
     }
 
     .step-number {
@@ -60,20 +60,20 @@
         right: -10px;
         font-size: 6rem;
         font-weight: 800;
-        color: rgba(37, 99, 235, 0.05);
+        color: rgba(64, 67, 78, 0.05);
         line-height: 1;
         transition: color 0.3s ease;
     }
 
     .step-card:hover .step-number {
-        color: rgba(37, 99, 235, 0.1);
+        color: rgba(64, 67, 78, 0.1);
     }
 
     .icon-box {
         width: 64px;
         height: 64px;
-        background: #eff6ff;
-        color: #2563eb;
+        background: #efeae4;
+        color: #40434E;
         border-radius: 16px;
         display: flex;
         align-items: center;

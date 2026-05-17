@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .history-container {
-        padding: 2rem 0 4rem;
+        padding: 2rem 1rem 4rem;
     }
     .page-title {
         font-weight: 800;
@@ -18,7 +18,7 @@
     }
     
     .history-card {
-        background: white;
+        background: #F8F4EF;
         border-radius: 16px;
         padding: 1.5rem;
         border: 1px solid #f1f5f9;

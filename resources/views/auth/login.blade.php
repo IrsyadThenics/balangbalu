@@ -15,17 +15,17 @@
 
     <style>
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
+            --primary-color: #40434E;
+            --primary-hover: #2c2e36;
             --text-dark: #0f172a;
             --text-muted: #64748b;
-            --bg-light: #f8fafc;
-            --border-color: #e2e8f0;
+            --bg-light: #F8F4EF;
+            --border-color: #dfd7ca;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: #F8F4EF;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -35,7 +35,7 @@
         }
 
         .login-card {
-            background: white;
+            background: #efeae4;
             width: 100%;
             max-width: 420px;
             border-radius: 20px;
@@ -44,7 +44,7 @@
             position: relative;
             padding-top: 4px; /* Space for the top bar */
         }
-
+        
         /* Top accent bar */
         .login-card::before {
             content: '';
@@ -85,14 +85,24 @@
             border-radius: 12px;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-color);
-            background-color: #fcfcfd;
+            background-color: #F8F4EF;
             transition: all 0.2s ease;
         }
 
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-            background-color: white;
+            box-shadow: 0 0 0 4px rgba(64, 67, 78, 0.1);
+            background-color: #efeae4;
+        }
+
+        /* Autofill Overrides */
+        .form-control:-webkit-autofill,
+        .form-control:-webkit-autofill:hover, 
+        .form-control:-webkit-autofill:focus, 
+        .form-control:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #F8F4EF inset !important;
+            -webkit-text-fill-color: var(--text-dark) !important;
+            transition: background-color 5000s ease-in-out 0s;
         }
 
         .btn-login {
@@ -105,13 +115,13 @@
             width: 100%;
             margin-top: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(64, 67, 78, 0.2);
         }
 
         .btn-login:hover {
             background-color: var(--primary-hover);
             transform: translateY(-1px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(64, 67, 78, 0.3);
         }
 
         .btn-login:active {

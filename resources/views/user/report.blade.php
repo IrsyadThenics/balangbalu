@@ -18,23 +18,23 @@
 
     <style>
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
+            --primary-color: #40434E;
+            --primary-hover: #2c2e36;
             --text-dark: #0f172a;
             --text-muted: #64748b;
-            --bg-body: #f8fafc;
-            --border-color: #e2e8f0;
+            --bg-body: #F8F4EF;
+            --border-color: #dfd7ca;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: #F8F4EF;
             min-height: 100vh;
             padding: 40px 20px;
         }
 
         .form-card {
-            background: white;
+            background: #efeae4;
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
@@ -93,15 +93,15 @@
             border-radius: 12px;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-color);
-            background-color: #fcfcfd;
+            background-color: #F8F4EF;
             transition: all 0.2s ease;
             font-size: 0.95rem;
         }
 
         .form-control:focus, .form-select:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-            background-color: white;
+            box-shadow: 0 0 0 4px rgba(64, 67, 78, 0.1);
+            background-color: #efeae4;
         }
 
         .btn-submit {
@@ -114,13 +114,13 @@
             width: 100%;
             margin-top: 1.5rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(64, 67, 78, 0.3);
         }
 
         .btn-submit:hover {
             background-color: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 20px 25px -5px rgba(64, 67, 78, 0.4);
         }
 
         .btn-back {
@@ -148,7 +148,7 @@
             justify-content: center;
             margin-top: 0.5rem;
             overflow: hidden;
-            background: #fcfcfd;
+            background: #F8F4EF;
             position: relative;
         }
 

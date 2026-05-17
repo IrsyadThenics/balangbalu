@@ -15,80 +15,128 @@
     
     <style>
         :root {
-            --primary-color: #2563eb;
-            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --primary-color: #40434E;
+            --primary-gradient: linear-gradient(135deg, #40434E 0%, #6f727c 100%);
             --text-dark: #0f172a;
-            --bg-light: #f8fafc;
+            --bg-light: #F8F4EF;
+        }
+
+        html {
+            scrollbar-gutter: stable;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: #F8F4EF;
             color: var(--text-dark);
             min-height: 100vh;
         }
 
+        /* Autofill Overrides */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active,
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus,
+        select:-webkit-autofill,
+        select:-webkit-autofill:hover,
+        select:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 1000px #F8F4EF inset !important;
+            -webkit-text-fill-color: var(--text-dark) !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
         /* Navbar Styling */
         .navbar {
-            padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.8) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            transition: all 0.3s ease;
+            padding: 0.75rem 0;
+            background: rgba(248, 244, 239, 0.75) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(223, 215, 202, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .navbar-brand {
             font-weight: 800;
-            font-size: 1.5rem;
-            background: var(--primary-gradient);
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #2c2e35 0%, #40434E 50%, #6f727c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.03em;
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.02);
         }
 
         .nav-link {
-            font-weight: 500;
-            color: #475569 !important;
-            margin: 0 0.5rem;
-            transition: color 0.2s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #575f6e !important;
+            padding: 0.6rem 1.1rem !important;
+            border-radius: 12px;
+            margin: 0 0.2rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
 
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary-color) !important;
+        .nav-link:hover {
+            color: #1e293b !important;
+            background-color: rgba(64, 67, 78, 0.05);
+        }
+
+        .nav-link.active {
+            color: #ffffff !important;
+            background-color: #40434E;
+            box-shadow: 0 4px 12px rgba(64, 67, 78, 0.15);
         }
 
         /* User Profile Box */
         .user-profile-box {
-            background: #f1f5f9;
-            padding: 0.4rem 1rem 0.4rem 0.4rem;
+            background: rgba(234, 227, 216, 0.6);
+            padding: 0.4rem 1.1rem 0.4rem 0.4rem;
             border-radius: 50px;
             gap: 0.75rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(223, 215, 202, 0.7);
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
         }
+        
         .user-profile-box:hover {
-            background: #e2e8f0;
+            background: rgba(220, 211, 196, 0.8);
+            border-color: rgba(223, 215, 202, 1);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
         .avatar-circle {
-            width: 32px;
-            height: 32px;
-            background: white;
+            width: 34px;
+            height: 34px;
+            background: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .user-profile-box:hover .avatar-circle {
+            transform: rotate(15deg);
         }
 
         .user-name {
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--text-dark);
+            color: #2c2e35;
         }
 
         /* Logout Button */
@@ -96,14 +144,14 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            background: white;
+            background: rgba(239, 68, 68, 0.06);
             color: #ef4444;
-            border: 1px solid #fee2e2;
+            border: 1px solid rgba(239, 68, 68, 0.15);
             padding: 0.5rem 1.25rem;
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.875rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn-logout:hover {
@@ -111,11 +159,78 @@
             color: white;
             border-color: #ef4444;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
         }
 
         main {
             padding-top: 1rem;
+        }
+
+        .navbar .container {
+            position: relative;
+        }
+
+        @media (min-width: 992px) {
+            .navbar-nav.mx-auto {
+                position: relative;
+                left: 0;
+                transform: none;
+                margin: 0 auto !important;
+            }
+        }
+
+        /* Mobile Navbar Responsive Design (992px Breakpoint for lg collapse) */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: rgba(248, 244, 239, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-radius: 20px;
+                padding: 1.5rem;
+                margin-top: 1rem;
+                box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+                border: 1px solid rgba(223, 215, 202, 0.6);
+                transition: all 0.3s ease;
+            }
+            .navbar-nav {
+                text-align: center;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            .nav-item {
+                margin: 0;
+                width: 100%;
+            }
+            .nav-link {
+                display: block;
+                padding: 0.75rem 1rem !important;
+                border-radius: 12px;
+                margin: 0 !important;
+            }
+            .nav-link:hover {
+                background-color: rgba(64, 67, 78, 0.05);
+            }
+            .nav-link.active {
+                background-color: #40434E;
+                color: #ffffff !important;
+            }
+            .d-flex.align-items-center.gap-3.ms-auto {
+                margin-top: 1rem;
+                padding-top: 1.25rem;
+                border-top: 1px solid rgba(223, 215, 202, 0.6);
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem !important;
+            }
+            .user-profile-box {
+                width: 100%;
+                justify-content: center;
+            }
+            .btn-logout {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -131,7 +246,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <!-- Menu Tengah -->
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav mx-auto align-items-center">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.home') ? 'active' : '' }}" href="{{ route('admin.home') }}">Dashboard</a>
                         </li>

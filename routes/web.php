@@ -45,6 +45,7 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 
+
 // Halaman Report (Hanya untuk User)
 Route::middleware(['auth'])->group(function () {
     // Route Home untuk masing-masing role

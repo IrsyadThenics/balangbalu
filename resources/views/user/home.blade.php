@@ -9,7 +9,7 @@
     }
 
     .dashboard-container {
-        padding: 2rem 0 4rem;
+        padding: 2rem 1rem 4rem;
     }
 
     .welcome-section {
@@ -34,7 +34,7 @@
     }
 
     .btn-create {
-        background-color: #2563eb;
+        background-color: #40434E;
         color: white;
         font-weight: 600;
         padding: 0.75rem 1.5rem;
@@ -44,25 +44,31 @@
         align-items: center;
         gap: 0.5rem;
         transition: all 0.2s ease;
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 10px 15px -3px rgba(64, 67, 78, 0.3);
     }
 
     .btn-create:hover {
-        background-color: #1d4ed8;
+        background-color: #2c2e36;
         color: white;
         transform: translateY(-2px);
-        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+        box-shadow: 0 20px 25px -5px rgba(64, 67, 78, 0.4);
     }
 
     /* Stats Cards */
     .stat-card {
-        background: white;
+        background: #F8F4EF;
         padding: 1.5rem;
         border-radius: 1.25rem;
         box-shadow: var(--card-shadow);
         border: 1px solid #f1f5f9;
         height: 100%;
-        transition: transform 0.2s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.1);
+        border-color: #cbd5e1;
     }
 
     .stat-icon {
@@ -75,7 +81,7 @@
         margin-bottom: 1rem;
     }
 
-    .icon-blue { background: #eff6ff; color: #2563eb; }
+    .icon-blue { background: #eae3d8; color: #40434E; }
     .icon-red { background: #fef2f2; color: #dc2626; }
     .icon-green { background: #f0fdf4; color: #16a34a; }
 
@@ -84,7 +90,7 @@
 
     /* Report Cards */
     .report-card {
-        background: white;
+        background: #F8F4EF;
         border-radius: 24px;
         overflow: hidden;
         border: 1px solid #f1f5f9;
@@ -94,6 +100,12 @@
         display: flex;
         flex-direction: column;
         position: relative;
+    }
+
+    .report-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+        border-color: #cbd5e1;
     }
 
     .card-img-wrapper {
@@ -140,7 +152,7 @@
         display: flex;
         gap: 0.75rem;
         background: #fcfcfd;
-        border-top: 1px solid #f1f5f9;
+        border-top: 1px solid #dfd7ca;
     }
 
     .btn-action-main {
@@ -151,6 +163,14 @@
         text-align: center;
         text-decoration: none;
         font-size: 0.9rem;
+        border: none;
+        transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-action-main:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        opacity: 0.9;
     }
 
     .btn-hubungi { background: #fee2e2; color: #dc2626; }
@@ -159,12 +179,19 @@
     .btn-detail-icon {
         width: 40px;
         height: 40px;
-        background: white;
-        border: 1px solid #e2e8f0;
+        background: #F8F4EF;
+        border: 1px solid #dfd7ca;
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-detail-icon:hover {
+        background: #efeae4;
+        border-color: #cbd5e1;
+        transform: translateY(-1px);
     }
 
     .owner-actions {
@@ -187,14 +214,49 @@
         backdrop-filter: blur(8px);
     }
 
-    .btn-mini-edit { background: rgba(255, 255, 255, 0.9); color: #a16207; }
-    .btn-mini-delete { background: rgba(255, 255, 255, 0.9); color: #b91c1c; }
+    .btn-mini-edit { background: rgba(248, 244, 239, 0.9); color: #a16207; }
+    .btn-mini-delete { background: rgba(248, 244, 239, 0.9); color: #b91c1c; }
 
     /* Modal */
     .modal-content { border-radius: 24px; border: none; }
     .detail-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #64748b; display: block; }
     .detail-value { font-weight: 600; color: #0f172a; margin-bottom: 1.25rem; }
     .detail-img { width: 100%; border-radius: 16px; object-fit: cover; max-height: 400px; }
+
+    /* Responsive Stats Cards (Side by Side on Mobile) */
+    @media (max-width: 767.98px) {
+        .stat-card {
+            padding: 0.75rem 0.35rem;
+            border-radius: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            margin-bottom: 0.4rem;
+        }
+        
+        .stat-icon i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            line-height: 1.15;
+        }
+    }
 </style>
 
 <div class="container dashboard-container">
@@ -231,22 +293,22 @@
     @endif
 
     <!-- Stats -->
-    <div class="row g-4 mb-5">
-        <div class="col-md-4">
+    <div class="row g-2 g-md-4 mb-5">
+        <div class="col-4 col-md-4">
             <div class="stat-card">
                 <div class="stat-icon icon-blue"><i data-lucide="clipboard-list"></i></div>
                 <div class="stat-value">{{ $reports->count() }}</div>
                 <div class="stat-label">Total Laporan</div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-4 col-md-4">
             <div class="stat-card">
                 <div class="stat-icon icon-red"><i data-lucide="search"></i></div>
                 <div class="stat-value">{{ $reports->where('jenis_laporan', 'kehilangan')->count() }}</div>
                 <div class="stat-label">Barang Kehilangan</div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-4 col-md-4">
             <div class="stat-card">
                 <div class="stat-icon icon-green"><i data-lucide="check-circle"></i></div>
                 <div class="stat-value">{{ $reports->where('jenis_laporan', 'menemukan')->count() }}</div>
@@ -286,11 +348,11 @@
                 <div class="card-content">
                     <h3 class="report-name">{{ $report->nama_laporan }}</h3>
                     <div class="info-item">
-                        <i data-lucide="map-pin" style="width: 16px; color: #2563eb;"></i>
+                        <i data-lucide="map-pin" style="width: 16px; color: #40434E;"></i>
                         {{ $report->lokasi_laporan }}
                     </div>
                     <div class="info-item">
-                        <i data-lucide="calendar" style="width: 16px; color: #2563eb;"></i>
+                        <i data-lucide="calendar" style="width: 16px; color: #40434E;"></i>
                         {{ \Carbon\Carbon::parse($report->tanggal_laporan)->format('d M Y') }}
                     </div>
                 </div>

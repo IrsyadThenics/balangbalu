@@ -3,11 +3,11 @@
 @section('content')
 <style>
     .profile-container {
-        padding: 2rem 0 4rem;
+        padding: 2rem 1rem 4rem;
     }
     
     .profile-header {
-        background: white;
+        background: #F8F4EF;
         border-radius: 24px;
         padding: 3rem 2rem;
         text-align: center;
@@ -25,20 +25,20 @@
         left: 0;
         right: 0;
         height: 120px;
-        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        background: linear-gradient(135deg, #40434E 0%, #6f727c 100%);
         z-index: 0;
     }
 
     .avatar-large {
         width: 120px;
         height: 120px;
-        background: white;
+        background: #F8F4EF;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto 1.5rem;
-        color: #2563eb;
+        color: #40434E;
         position: relative;
         z-index: 1;
         border: 4px solid white;
@@ -62,7 +62,7 @@
     }
 
     .info-card {
-        background: white;
+        background: #F8F4EF;
         border-radius: 20px;
         padding: 2rem;
         border: 1px solid #f1f5f9;
@@ -88,32 +88,39 @@
     .form-control {
         border-radius: 12px;
         padding: 0.75rem 1rem;
-        border: 1px solid #e2e8f0;
-        background-color: #f8fafc;
+        border: 1px solid #dfd7ca;
+        background-color: #F8F4EF;
         transition: all 0.2s;
     }
 
+    .form-control:disabled, .form-control[readonly] {
+        background-color: #F8F4EF !important;
+        color: #7a756b !important;
+        border-color: #dfd7ca !important;
+        opacity: 0.8 !important;
+    }
+
     .form-control:focus {
-        background-color: white;
-        border-color: #2563eb;
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        background-color: #efeae4;
+        border-color: #40434E;
+        box-shadow: 0 0 0 4px rgba(64, 67, 78, 0.1);
     }
 
     .btn-save {
-        background-color: #2563eb;
+        background-color: #40434E;
         color: white;
         font-weight: 600;
         padding: 0.75rem 2rem;
         border-radius: 12px;
         transition: all 0.2s;
         border: none;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        box-shadow: 0 4px 12px rgba(64, 67, 78, 0.2);
     }
 
     .btn-save:hover {
-        background-color: #1d4ed8;
+        background-color: #2c2e36;
         transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 6px 15px rgba(64, 67, 78, 0.3);
     }
 </style>
 
@@ -151,7 +158,7 @@
         <div class="col-lg-8">
             <div class="info-card">
                 <h3 class="info-card-title">
-                    <i data-lucide="user-cog" style="color: #2563eb;"></i> 
+                    <i data-lucide="user-cog" style="color: #40434E;"></i> 
                     Informasi Akun
                 </h3>
                 
@@ -180,7 +187,7 @@
         <div class="col-lg-4">
             <div class="info-card">
                 <h3 class="info-card-title">
-                    <i data-lucide="shield" style="color: #2563eb;"></i>
+                    <i data-lucide="shield" style="color: #40434E;"></i>
                     Keamanan
                 </h3>
                 <p class="text-muted mb-4 text-sm">Ubah kata sandi Anda secara berkala untuk menjaga keamanan akun.</p>

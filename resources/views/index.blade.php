@@ -1,96 +1,94 @@
 @extends('layouts.app')
 @section('content')
     <style>
-        /* Hero Section */
+        /* Hero Section Gacor */
         .hero-section {
-            padding: 80px 0 100px;
+            padding: 90px 0 110px;
             text-align: center;
+            background: linear-gradient(120deg, #F8F4EF 60%, #efeae4 100%);
+            border-radius: 0 0 2.5rem 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
         }
-
         .hero-title {
-            font-weight: 800;
-            font-size: clamp(2rem, 10vw, 4.5rem);
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
+            font-weight: 900;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.045em;
+            margin-bottom: 1.2rem;
+            color: #1e293b;
+            text-shadow: 0 2px 16px rgba(64,67,78,0.08);
         }
-
         .gradient-text {
-            background: var(--primary-gradient);
+            background: linear-gradient(90deg, #40434E 0%, #6f727c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
         }
-
         .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.25rem);
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            line-height: 1.6;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
             padding: 0 15px;
         }
-
         .hero-btns {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             justify-content: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             flex-wrap: wrap;
             padding: 0 20px;
         }
-
         .btn-primary-custom, .btn-secondary-custom {
             width: 100%;
-            max-width: 280px;
+            max-width: 260px;
             justify-content: center;
         }
-
         @media (min-width: 576px) {
             .btn-primary-custom, .btn-secondary-custom {
                 width: auto;
             }
         }
-
         .btn-primary-custom {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.875rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
+            background: linear-gradient(90deg, #40434E 0%, #6f727c 100%);
+            color: #fff;
+            padding: 1rem 2.2rem;
+            border-radius: 16px;
+            font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            gap: 0.6rem;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 24px -6px #6f727c33;
+            border: none;
+            transition: all 0.22s cubic-bezier(.4,2,.6,1);
         }
-
         .btn-primary-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
-            color: white;
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 16px 32px -8px #6f727c44;
+            background: linear-gradient(90deg, #6f727c 0%, #40434E 100%);
+            color: #fff;
         }
-
         .btn-secondary-custom {
-            background: white;
-            color: var(--text-dark);
-            padding: 0.875rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
+            background: #fff;
+            color: #40434E;
+            padding: 1rem 2.2rem;
+            border-radius: 16px;
+            font-weight: 700;
             text-decoration: none;
-            border: 1px solid #e2e8f0;
+            border: 2px solid #dfd7ca;
             display: inline-flex;
             align-items: center;
-            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            transition: all 0.22s cubic-bezier(.4,2,.6,1);
         }
-
         .btn-secondary-custom:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
+            background: #efeae4;
+            border-color: #6f727c;
+            color: #6f727c;
         }
-
         /* Stats/Features */
         .feature-pills {
             display: flex;
@@ -99,25 +97,25 @@
             flex-wrap: wrap;
             padding: 0 20px;
         }
-
         .pill {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.95rem;
+            color: #64748b;
+            font-weight: 700;
+            font-size: 1.05rem;
+            background: #fff;
+            border-radius: 999px;
+            padding: 0.5rem 1.25rem;
+            box-shadow: 0 2px 8px 0 #6f727c11;
         }
-
         .pill i {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
         }
-
-        .pill-aman { color: #10b981; }
-        .pill-realtime { color: #f59e0b; }
-        .pill-komunitas { color: #3b82f6; }
-
+        .pill-aman { color: #40434E; }
+        .pill-realtime { color: #40434E; }
+        .pill-komunitas { color: #40434E; }
         /* Animation */
         @keyframes fadeInUp {
             from {
@@ -129,15 +127,12 @@
                 transform: translateY(0);
             }
         }
-
         .animate-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+            animation: fadeInUp 0.8s cubic-bezier(.4,2,.6,1) forwards;
         }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-
+        .delay-1 { animation-delay: 0.12s; }
+        .delay-2 { animation-delay: 0.22s; }
+        .delay-3 { animation-delay: 0.32s; }
     </style>
 
     <!-- Hero Section -->
@@ -150,7 +145,6 @@
             <p class="hero-subtitle animate-up delay-1">
                 Platform modern untuk melaporkan dan menemukan barang hilang dengan verifikasi admin dan sistem pencocokan otomatis.
             </p>
-            
             <div class="hero-btns animate-up delay-2">
                 @auth
                     <a href="{{ route('user.home') }}" class="btn-primary-custom">
@@ -161,9 +155,8 @@
                         Mulai Sekarang <i data-lucide="arrow-right"></i>
                     </a>
                 @endauth
-                <a href="#fitur" class="btn-secondary-custom">Lihat Fitur</a>
+                <a href="{{ route('fitur') }}" class="btn-secondary-custom">Lihat Fitur</a>
             </div>
-
             <div class="feature-pills animate-up delay-3">
                 <div class="pill">
                     <span class="pill-aman"><i data-lucide="shield-check"></i> Aman</span>

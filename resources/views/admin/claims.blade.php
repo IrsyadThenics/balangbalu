@@ -37,6 +37,13 @@
                             <td>
                                 <div class="fw-medium">{{ $claim->user->name }}</div>
                                 <div class="text-muted small">{{ $claim->user->email }}</div>
+                                @if($claim->no_wa)
+                                <div class="mt-1">
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $claim->no_wa) }}?text=Halo%20{{ urlencode($claim->user->name) }},%20saya%20Admin%20terkait%20laporan%20{{ urlencode($claim->report->nama_laporan) }}." target="_blank" class="badge bg-success bg-opacity-10 text-success text-decoration-none px-2 py-1 rounded d-inline-flex align-items-center gap-1" style="font-size: 0.75rem;">
+                                        <i data-lucide="message-circle" style="width: 12px; height: 12px;"></i> {{ $claim->no_wa }}
+                                    </a>
+                                </div>
+                                @endif
                             </td>
                             <td>
                                 <div class="d-flex align-items-center gap-2">
@@ -102,12 +109,36 @@
                         </div>
                     </div>
 
+                    @if($claim->no_wa)
+                    <div class="mb-4">
+                        <label class="text-muted text-uppercase fw-bold small d-block mb-1">WhatsApp Pemohon</label>
+                        <div class="p-3 border rounded-4 bg-white d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-dark">{{ $claim->no_wa }}</span>
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $claim->no_wa) }}?text=Halo%20{{ urlencode($claim->user->name) }},%20saya%20Admin%20terkait%20laporan%20{{ urlencode($claim->report->nama_laporan) }}." target="_blank" class="btn btn-success btn-sm rounded-pill px-3 py-1 fw-bold d-inline-flex align-items-center gap-1" style="background-color: #22c55e; border: none; font-size: 0.8rem;">
+                                <i data-lucide="message-circle" style="width: 14px;"></i> Hubungi via WA
+                            </a>
+                        </div>
+                    </div>
+                    @endif
+
                     <div class="mb-4">
                         <label class="text-muted text-uppercase fw-bold small d-block mb-1">Pesan Validasi Pemohon</label>
                         <div class="p-3 border rounded-4 bg-white">
                             {{ $claim->pesan_validasi }}
                         </div>
                     </div>
+
+                    @if($claim->bukti_gambar)
+                    <div class="mb-4">
+                        <label class="text-muted text-uppercase fw-bold small d-block mb-1">Gambar Bukti Terlampir</label>
+                        <div class="p-2 border rounded-4 bg-white text-center">
+                            <a href="{{ asset('storage/claims/'.$claim->bukti_gambar) }}" target="_blank">
+                                <img src="{{ asset('storage/claims/'.$claim->bukti_gambar) }}" class="img-fluid rounded-3 shadow-sm" style="max-height: 200px; object-fit: contain;">
+                            </a>
+                            <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Klik gambar untuk melihat ukuran penuh</small>
+                        </div>
+                    </div>
+                    @endif
 
                     <div class="mb-3">
                         <label for="status" class="text-muted text-uppercase fw-bold small d-block mb-1">Keputusan</label>

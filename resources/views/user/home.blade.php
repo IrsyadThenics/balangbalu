@@ -358,10 +358,16 @@
                 </div>
 
                 <div class="card-footer-custom">
-                    @if($report->jenis_laporan == 'kehilangan')
-                    <button type="button" class="btn-action-main btn-hubungi" data-bs-toggle="modal" data-bs-target="#modalClaim{{ $report->id }}">Hubungi</button>
+                    @if((int)$report->user_id !== (int)auth()->id())
+                        @if($report->jenis_laporan == 'kehilangan')
+                        <button type="button" class="btn-action-main btn-hubungi" data-bs-toggle="modal" data-bs-target="#modalClaim{{ $report->id }}">Hubungi</button>
+                        @else
+                        <button type="button" class="btn-action-main btn-klaim" data-bs-toggle="modal" data-bs-target="#modalClaim{{ $report->id }}">Klaim</button>
+                        @endif
                     @else
-                    <button type="button" class="btn-action-main btn-klaim" data-bs-toggle="modal" data-bs-target="#modalClaim{{ $report->id }}">Klaim</button>
+                        <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill fw-bold w-100 text-center" style="font-size: 0.8rem; line-height: 1.5;">
+                            Laporan Anda
+                        </span>
                     @endif
 
                     <button type="button" class="btn-detail-icon" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $report->id }}">
@@ -416,7 +422,7 @@
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('claims.store') }}" method="POST">
+                    <form action="{{ route('claims.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="report_id" value="{{ $report->id }}">
                         <div class="modal-body p-4">
@@ -425,12 +431,41 @@
                                    'Berikan informasi atau bukti jika Anda menemukan barang ini.' : 
                                    'Berikan deskripsi atau bukti yang kuat bahwa barang ini adalah milik Anda.' }}
                             </p>
+                            
                             <div class="mb-3">
                                 <label for="pesan_validasi" class="detail-label">Pesan / Bukti Validasi</label>
-                                <textarea name="pesan_validasi" id="pesan_validasi" class="form-control" rows="4" placeholder="Contoh: Saya menemukan barang ini di dekat kantin..." required minlength="10"></textarea>
+                                <textarea name="pesan_validasi" id="pesan_validasi" class="form-control rounded-4" rows="3" placeholder="Contoh: Saya menemukan barang ini di dekat kantin..." required minlength="10"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="no_wa" class="detail-label">Nomor WhatsApp Anda</label>
+                                <input type="tel" name="no_wa" id="no_wa" class="form-control rounded-pill px-3" placeholder="Contoh: 081234567890" required pattern="[0-9]{9,15}">
+                                <small class="text-muted d-block mt-1">Masukkan nomor WhatsApp aktif Anda agar admin dapat menghubungi Anda.</small>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="bukti_gambar" class="detail-label">Foto / Gambar Bukti (Opsional)</label>
+                                <input type="file" name="bukti_gambar" id="bukti_gambar" class="form-control rounded-4" accept="image/*">
+                                <small class="text-muted d-block mt-1">Unggah foto pendukung atau bukti kepemilikan/temuan barang jika ada.</small>
+                            </div>
+
+                            <!-- Arahan Hubungi Admin -->
+                            <div class="p-3 bg-light rounded-4 border border-opacity-10 d-flex flex-column gap-2 mb-2" style="background-color: #f0fdf4 !important; border-color: #bbf7d0 !important;">
+                                <div class="d-flex align-items-start gap-2">
+                                    <i data-lucide="help-circle" class="text-success mt-1" style="width: 18px; flex-shrink: 0;"></i>
+                                    <div>
+                                        <span class="fw-bold text-success" style="font-size: 0.85rem; display: block;">Butuh Bantuan Cepat?</span>
+                                        <p class="text-muted mb-0" style="font-size: 0.8rem; line-height: 1.4;">
+                                            Anda juga dapat langsung menghubungi Admin melalui WhatsApp untuk mempercepat proses verifikasi barang ini.
+                                        </p>
+                                    </div>
+                                </div>
+                                <a href="https://wa.me/6285607746795?text=Halo%20Admin,%20saya%20ingin%20bertanya%20mengenai%20klaim%20barang%20laporan%20ID%20{{ $report->id }}%20({{ urlencode($report->nama_laporan) }})." target="_blank" class="btn btn-success btn-sm w-100 rounded-pill fw-bold py-2 mt-1 d-flex align-items-center justify-content-center gap-2" style="background-color: #22c55e; border: none;">
+                                    <i data-lucide="message-circle" style="width: 16px;"></i> Hubungi Admin via WhatsApp
+                                </a>
                             </div>
                         </div>
-                        <div class="modal-footer border-0 p-4">
+                        <div class="modal-footer border-0 p-4 pt-0">
                             <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary rounded-pill px-4">Kirim Permintaan</button>
                         </div>

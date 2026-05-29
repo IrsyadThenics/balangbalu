@@ -14,7 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::latest()->get();
+        $reports = Report::whereDoesntHave('claims', function ($query) {
+            $query->where('status', 'accepted');
+        })->latest()->get();
         return view('user.home', compact('reports'));
     }
 

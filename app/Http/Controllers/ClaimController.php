@@ -16,7 +16,15 @@ class ClaimController extends Controller
         $request->validate([
             'report_id' => 'required|exists:reports,id',
             'pesan_validasi' => 'required|string|min:10',
+            'no_wa' => 'required|string|min:9|max:15',
+            'bukti_gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
+
+        // Cek apakah user mencoba mengklaim laporannya sendiri
+        $report = Report::findOrFail($request->report_id);
+        if ((int)$report->user_id == (int)auth()->id()) {
+            return redirect()->back()->with('error', 'Anda tidak dapat mengklaim laporan Anda sendiri.');
+        }
 
         // Cek apakah user sudah pernah klaim laporan ini
         $existingClaim = Claim::where('report_id', $request->report_id)
@@ -27,10 +35,19 @@ class ClaimController extends Controller
             return redirect()->back()->with('error', 'Anda sudah mengirimkan permintaan untuk laporan ini.');
         }
 
+        $buktiGambarName = null;
+        if ($request->hasFile('bukti_gambar')) {
+            $image = $request->file('bukti_gambar');
+            $image->storeAs('public/claims', $image->hashName());
+            $buktiGambarName = $image->hashName();
+        }
+
         Claim::create([
             'report_id' => $request->report_id,
             'user_id' => auth()->id(),
             'pesan_validasi' => $request->pesan_validasi,
+            'no_wa' => $request->no_wa,
+            'bukti_gambar' => $buktiGambarName,
             'status' => 'pending',
         ]);
 
@@ -43,6 +60,13 @@ class ClaimController extends Controller
     public function index()
     {
         $claims = Claim::with(['report', 'user'])->latest()->get();
+        
+        $pendingClaims = $claims->where('status', 'pending');
+        $rejectedClaims = $claims->where('status', 'rejected');
+        $acceptedClaims = $claims->where('status', 'accepted');
+        
+        $claims = $pendingClaims->concat($rejectedClaims)->concat($acceptedClaims);
+
         return view('admin.claims', compact('claims'));
     }
 

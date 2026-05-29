@@ -250,6 +250,9 @@
                             <a class="nav-link {{ request()->routeIs('user.home') ? 'active' : '' }}" href="{{ route('user.home') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('user.laporan_selesai') ? 'active' : '' }}" href="{{ route('user.laporan_selesai') }}">Laporan Selesai</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('user.history') ? 'active' : '' }}" href="{{ route('user.history') }}">Riwayat</a>
                         </li>
                         <li class="nav-item">

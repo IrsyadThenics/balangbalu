@@ -50,7 +50,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware(['auth'])->group(function () {
     // Route Home untuk masing-masing role
     Route::get('/user/home', [ReportController::class, 'index'])->name('user.home');
+    Route::get('/user/laporan-selesai', [\App\Http\Controllers\UserController::class, 'laporanSelesai'])->name('user.laporan_selesai');
+    
     Route::get('/admin/home', [\App\Http\Controllers\AdminController::class, 'home'])->name('admin.home')->middleware('role:admin');
+    Route::get('/admin/laporan-selesai', [\App\Http\Controllers\AdminController::class, 'laporanSelesai'])->name('admin.laporan_selesai')->middleware('role:admin');
 
     //Route untuk halaman profile admin
     Route::get('/admin/profile', [\App\Http\Controllers\AdminController::class, 'profile'])->name('admin.profile')->middleware('role:admin');

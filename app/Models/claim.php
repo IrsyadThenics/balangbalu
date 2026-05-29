@@ -13,6 +13,8 @@ class Claim extends Model
         'report_id',
         'user_id',
         'pesan_validasi',
+        'no_wa',
+        'bukti_gambar',
         'status',
         'catatan_admin',
     ];

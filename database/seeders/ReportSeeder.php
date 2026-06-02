@@ -19,7 +19,7 @@ class ReportSeeder extends Seeder
         'deskripsi_laporan' => 'Terdapat lubang besar di tengah jalan utama.',
         'tanggal_laporan' => now(),
         'waktu_laporan' => now(),
-        'foto_laporan' => 'default.jpg',
+        'foto_laporan' => 'storage/app/public/reports/tCXIOXHTFjmdBoCBSIFtcOUQMdYKgCg6Vd30i8kw.png',
     ]);
     \App\Models\Report::create([
         'nama_laporan' => 'Laporan Banjir',

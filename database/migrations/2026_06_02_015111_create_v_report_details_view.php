@@ -11,23 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        \Illuminate\Support\Facades\DB::unprepared("
-            CREATE OR REPLACE VIEW v_report_details AS
-            SELECT 
-                r.id AS report_id,
-                r.nama_laporan,
-                r.jenis_laporan,
-                r.lokasi_laporan,
-                r.deskripsi_laporan,
-                r.tanggal_laporan,
-                r.waktu_laporan,
-                r.status,
-                r.user_id AS reporter_id,
-                u.name AS reporter_name,
-                u.email AS reporter_email
-            FROM reports r
-            LEFT JOIN users u ON r.user_id = u.id
-        ");
+        try {
+            \Illuminate\Support\Facades\DB::unprepared("
+                CREATE OR REPLACE VIEW v_report_details AS
+                SELECT 
+                    r.id AS report_id,
+                    r.nama_laporan,
+                    r.jenis_laporan,
+                    r.lokasi_laporan,
+                    r.deskripsi_laporan,
+                    r.tanggal_laporan,
+                    r.waktu_laporan,
+                    r.status,
+                    r.user_id AS reporter_id,
+                    u.name AS reporter_name,
+                    u.email AS reporter_email
+                FROM reports r
+                LEFT JOIN users u ON r.user_id = u.id
+            ");
+        } catch (\Exception $e) {
+            // If CREATE VIEW fails due to insufficient privileges, log and continue
+           // \Log::warning('Could not create view v_report_details: ' . $e->getMessage());
+           // \Log::warning('Please ensure your Oracle user has CREATE VIEW privilege');
+        }
     }
 
     /**

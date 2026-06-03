@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Console\Commands\MigrateFreshCommand;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Register custom migrate:fresh command for Oracle
+        $this->commands(MigrateFreshCommand::class);
     }
 
     /**

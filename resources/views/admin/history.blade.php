@@ -160,11 +160,11 @@
                 Laporan Saya
             </button>
         </li>
-        <li class="nav-item" role="presentation">
+        <!--<li class="nav-item" role="presentation">
             <button class="nav-link" id="claims-tab" data-bs-toggle="tab" data-bs-target="#claims-pane" type="button" role="tab" aria-controls="claims-pane" aria-selected="false">
                 Pengajuan Klaim & Hubungi
             </button>
-        </li>
+        </li>-->
     </ul>
 
     <div class="tab-content" id="historyTabContent">
@@ -185,19 +185,13 @@
                     </div>
                     <div>
                         @php
-                            $latestClaim = $report->claims()->latest()->first();
+                            $hasAcceptedClaim = $report->claims()->where('status', 'accepted')->exists();
                         @endphp
-                        @if($latestClaim)
-                            @if($latestClaim->status == 'accepted')
-                                <span class="history-status status-resolved">Selesai</span>
-                            @elseif($latestClaim->status == 'pending')
-                                <span class="history-status status-pending">Pending</span>
-                            @else
-                                <span class="history-status status-rejected">Ditolak</span>
-                            @endif
+                        @if($hasAcceptedClaim)
+                            <span class="history-status status-resolved">Selesai</span>
                         @else
                             <span class="history-status status-pending">
-                                {{ $report->jenis_laporan == 'kehilangan' ? 'Dalam Pencarian' : 'Aktif' }}
+                                {{ $report->jenis_laporan == 'kehilangan' ? 'Kehilangan' : 'Menemukan' }}
                             </span>
                         @endif
                     </div>

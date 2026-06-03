@@ -185,19 +185,13 @@
                     </div>
                     <div>
                         @php
-                            $latestClaim = $report->claims()->latest()->first();
+                            $hasAcceptedClaim = $report->claims()->where('status', 'accepted')->exists();
                         @endphp
-                        @if($latestClaim)
-                            @if($latestClaim->status == 'accepted')
-                                <span class="history-status status-resolved">Selesai</span>
-                            @elseif($latestClaim->status == 'pending')
-                                <span class="history-status status-pending">Pending</span>
-                            @else
-                                <span class="history-status status-rejected">Ditolak</span>
-                            @endif
+                        @if($hasAcceptedClaim)
+                            <span class="history-status status-resolved">Selesai</span>
                         @else
                             <span class="history-status status-pending">
-                                {{ $report->jenis_laporan == 'kehilangan' ? 'Dalam Pencarian' : 'Aktif' }}
+                                {{ $report->jenis_laporan == 'kehilangan' ? 'Kehilangan' : 'Menemukan' }}
                             </span>
                         @endif
                     </div>
